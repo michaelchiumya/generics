@@ -84,21 +84,15 @@ public class GenericArrayList<T> implements IList<T>, Iterable<T>{
      */
     @Override
     public T remove(int index) {
-        if(index < 0 || index > currentCapacity)
-        {
-            throw new ArrayIndexOutOfBoundsException();
-        }
-        //store item to be deleted
+        if (index < 0 || index > currentCapacity) {  throw new ArrayIndexOutOfBoundsException();  }
+
+        T[] holder = (T[]) new Object[buffer.length];
         T deleted = buffer[index];
-        //loop and shift left
-        for(int i = index; i < currentCapacity - 1; i++)        {
-              buffer[i] = buffer[i++];
-        }
-          buffer[currentCapacity-1] = null;
-
-         // as the new element is deleted decrement
-        currentCapacity--;
-
+        for (int i = 0; i < buffer.length; i++) {
+            if (i != index ) { holder[i] = buffer[i]; }
+            else{ holder[i] = buffer[index+1];  i++; }
+           }
+        buffer = holder;
         return deleted;
     }
 
@@ -122,8 +116,16 @@ public class GenericArrayList<T> implements IList<T>, Iterable<T>{
 
     @Override
     public boolean isEmpty() {
-        //check if theres an item at first index
-        return buffer[0] != null;
+        //loop the buffer
+        for (int i = 0; i < buffer.length; i++) {
+            //check if any index has a value
+            if (!(buffer[i] == null)){
+                //return false if index has value,implying the buffer is not empty
+                return false;
+            }
+        }
+
+        return true;
     }
 
     @Override
@@ -143,16 +145,19 @@ public class GenericArrayList<T> implements IList<T>, Iterable<T>{
 
     @Override
     public void rotate(int distance) {
-       // T[] temp = buffer;
-
-        for (int i = 0; i < currentCapacity - 1 - i; i++) {
-            //start add from distance
-            buffer[i] = buffer[i + distance];
+        T[] holder = (T[]) new Object[buffer.length];
+        int index = 0;
+        for(int i = 0; i < distance; i++){
+            holder[i] = buffer[distance+i];
         }
- /**      tried to add first elements of temp (upto distance's index) at the end of buffer but dont seem to work
-//            for (int j = 0; j < currentCapacity ; j++) {
-//               buffer[distance++] =  temp[j] ;
-*/            }
+        for(int i = distance; i < buffer.length; i++){
+            holder[i] = buffer[index++];
+        }
+        buffer = holder;
+
+
+
+ }
 
     public void growArray(){
        if(nextFreeLocation >= currentCapacity){
