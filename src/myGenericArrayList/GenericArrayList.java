@@ -147,12 +147,14 @@ public class GenericArrayList<T> implements IList<T>, Iterable<T>{
     public void rotate(int distance) {
         T[] holder = (T[]) new Object[buffer.length];
         int index = 0;
-        for(int i = 0; i < distance; i++){
-            holder[i] = buffer[distance+i];
-        }
-        for(int i = distance; i < buffer.length; i++){
-            holder[i] = buffer[index++];
-        }
+//        for(int i = 0; i < buffer.length - distance; i++){
+//            holder[i] = buffer[distance++];
+//            index = i;
+//        }
+
+       System.arraycopy(buffer, distance, holder, 0, buffer.length - distance);
+        System.arraycopy(buffer, 0, holder, (buffer.length - distance)/distance-1 , distance);
+
         buffer = holder;
 
 

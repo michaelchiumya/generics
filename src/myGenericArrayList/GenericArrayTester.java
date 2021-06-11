@@ -83,8 +83,8 @@ public class GenericArrayTester implements Iterable{
         }
 
 
-        System.out.println("\n" + "rotation : by 1");
-        names.rotate(1);
+        System.out.println("\n" + "rotation : by 5");
+        names.rotate(5);
         for(GenericArrayListIterator<String> iterator = (GenericArrayListIterator<String>) names.iterator(); iterator.hasNext(); ){
               String currElement = iterator.next();
                 System.out.print(currElement + " ");
