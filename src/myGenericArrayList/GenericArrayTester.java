@@ -22,8 +22,8 @@ public class GenericArrayTester implements Iterable{
         names.add("Markus");
         names.add("Millie");
 
-                /* iterate using enhanced for loop and custom iterator*/
-                for(GenericArrayListIterator<String> iterator = (GenericArrayListIterator<String>) names.iterator(); iterator.hasNext(); ){
+        /* iterate using enhanced for loop and custom iterator*/
+       for(GenericArrayListIterator<String> iterator = (GenericArrayListIterator<String>) names.iterator(); iterator.hasNext(); ){
                         String currElement = iterator.next();
                         System.out.print(currElement + " ");
                 }
@@ -37,8 +37,8 @@ public class GenericArrayTester implements Iterable{
         names.add("Sandra");
         names.add("Loon");
 
-                /* iterate using enhanced for loop and custom iterator*/
-                for(GenericArrayListIterator<String> iterator = (GenericArrayListIterator<String>) names.iterator(); iterator.hasNext(); ){
+       /* iterate using enhanced for loop and custom iterator*/
+       for(GenericArrayListIterator<String> iterator = (GenericArrayListIterator<String>) names.iterator(); iterator.hasNext(); ){
                         String currElement = iterator.next();
                         System.out.print(currElement + " ");
                 }
@@ -49,7 +49,7 @@ public class GenericArrayTester implements Iterable{
         System.out.println("new item added at index 5.....");
 
 
-                /* iterate using enhanced for loop and custom iterator*/
+        /* iterate using enhanced for loop and custom iterator*/
                 for(GenericArrayListIterator<String> iterator = (GenericArrayListIterator<String>) names.iterator(); iterator.hasNext(); ){
                         String currElement = iterator.next();
                         System.out.print(currElement + " ");
@@ -76,6 +76,11 @@ public class GenericArrayTester implements Iterable{
         System.out.println("remove at index 4.....");
         System.out.println("removed item : " + names.remove( 4));
         System.out.println("item removed.....");
+                System.out.println();
+                System.out.println("remove element sandra.....");
+
+                System.out.println("item removed..... : "+  names.remove( "Sandra") + "\n");
+
 
         for(GenericArrayListIterator<String> iterator = (GenericArrayListIterator<String>) names.iterator(); iterator.hasNext(); ){
             String currElement = iterator.next();
@@ -92,10 +97,6 @@ public class GenericArrayTester implements Iterable{
 
 
         }
-
-
-
-
 
         @Override
         public Iterator iterator() {

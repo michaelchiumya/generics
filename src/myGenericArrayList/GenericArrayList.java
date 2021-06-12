@@ -31,8 +31,12 @@ public class GenericArrayList<T> implements IList<T>, Iterable<T> {
      */
     @Override
     public void add(T elem) {
-        //grow array if items exceeds array object length
-        growArray();
+        //check if array has space
+        if(nextFreeLocation > currentCapacity){
+            //grow array if no space in array
+            growArray();
+        }
+        //add element by setting element to index to next free loc
         buffer[nextFreeLocation] = elem;
         //make next free location free by moving one index up
         nextFreeLocation++;
@@ -49,6 +53,7 @@ public class GenericArrayList<T> implements IList<T>, Iterable<T> {
         growArray();
         buffer[index] = element;
         nextFreeLocation++;
+
     }
 
     /**
@@ -98,25 +103,16 @@ public class GenericArrayList<T> implements IList<T>, Iterable<T> {
         if (index < 0 || index > currentCapacity) {
             throw new ArrayIndexOutOfBoundsException();
         }
-
-//       T[] holder = (T[]) new Object[buffer.length];
+        //get the deleted item
         T deleted = buffer[index];
-//        for (int i = 0; i < buffer.length; i++) {
-//            if (i != index ) { holder[i] = buffer[i]; }
-//            else{ holder[i] = buffer[index+1];  i++; }
-//           }
-//        buffer = holder;
-//
-//        return deleted;
-//        System.arraycopy(buffer, 0, holder,0, index-1);
-//        System.arraycopy(buffer, index, holder,index+index-1, buffer.length-index-1);
-//        buffer = holder;
-//        return deleted;
-
+        //loop array from the index to be removed
         for (int i = index; i < buffer.length - index - 1; i++) {
+            //shift elements right to ignore the element at index
             buffer[i] = buffer[i + 1];
         }
+        //set next free loc by minus 1
         nextFreeLocation = nextFreeLocation - 1;
+        //return the deleted element
         return deleted;
     }
 
@@ -127,20 +123,16 @@ public class GenericArrayList<T> implements IList<T>, Iterable<T> {
      */
     @Override
     public boolean remove(T elem) {
-        if (elem != null) {
-            for (int i = 0; i < currentCapacity; i++) {
-                //find the index of elem
-                if (buffer[i] == elem) {
-                    remove(i);
-                }
+        //loop the array to find the index of the element
+        for (int i = 0; i < currentCapacity ; i++) {
+            //check if the element match element at index i
+            if (buffer[i] == elem){
+                //remove the element if it match
+                 this.remove(i);
+                 return true;
             }
-            return true;
-
-        } else {
-            return false;
         }
-
-
+       return false;
     }
 
     @Override
@@ -148,12 +140,11 @@ public class GenericArrayList<T> implements IList<T>, Iterable<T> {
         //loop the buffer
         for (int i = 0; i < buffer.length; i++) {
             //check if any index has a value
-            if (!(buffer[i] == null)) {
+            if (buffer[i] != null) {
                 //return false if index has value,implying the buffer is not empty
                 return false;
             }
         }
-
         return true;
     }
 
@@ -218,13 +209,15 @@ public class GenericArrayList<T> implements IList<T>, Iterable<T> {
         T[] result = (T[]) new Object[buffer.length];
         int count = 0;
         for(int i=0; i < buffer.length - distance; i++){
-            count =  i;
+
             result[i] = buffer[distance+i];
         }
 
 
-        for(int i = 0; i < distance; i++){
-            result[ distance+i+1] = buffer[i];
+        for(int i = 1; i < distance + distance  ; i++){
+
+            result[distance+i] = buffer[count];
+            count++;
         }
 
         System.arraycopy( result, 0, buffer, 0, buffer.length );
