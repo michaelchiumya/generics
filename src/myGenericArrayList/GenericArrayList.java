@@ -4,9 +4,10 @@ import MyInterfaces.IList;
 
 import java.util.Iterator;
 
-public class GenericArrayList<T> implements IList<T>, Iterable<T>{
+public class GenericArrayList<T> implements IList<T>, Iterable<T> {
     /**
      * custom generic arraylist class
+     *
      * @param buffer generic array
      * @param nextFreeLocation
      * @param initialCapacity arraysize to start with
@@ -25,6 +26,7 @@ public class GenericArrayList<T> implements IList<T>, Iterable<T>{
 
     /**
      * adds item to array object
+     *
      * @param elem item to be added
      */
     @Override
@@ -38,8 +40,9 @@ public class GenericArrayList<T> implements IList<T>, Iterable<T>{
 
     /**
      * adds item to array object at a specified index
+     *
      * @param element item to be added
-     * @param index index to add on
+     * @param index   index to add on
      */
     @Override
     public void add(int index, T element) {
@@ -47,44 +50,54 @@ public class GenericArrayList<T> implements IList<T>, Iterable<T>{
         buffer[index] = element;
         nextFreeLocation++;
     }
+
     /**
      * set specified item to array object at a specified index
+     *
      * @param element item to be added
-     * @param index index to add on
+     * @param index   index to add on
      */
     @Override
     public T set(int index, T element) {
-        if(index > currentCapacity){
+        if (index > currentCapacity) {
             //throw exception if index is out of range
             throw new IndexOutOfBoundsException();
         }
         //return the set item
         return buffer[index] = element;
     }
+
     /**
      * get item from array object at a specified index
+     *
      * @param index specified index
      */
     @Override
     public T get(int index) {
-       if(index > currentCapacity){
-             throw new ArrayIndexOutOfBoundsException();
-          }
-          return buffer[index];
+        if (index > currentCapacity) {
+            throw new ArrayIndexOutOfBoundsException();
+        }
+        return buffer[index];
     }
+
     /**
      * returns length of array object
      */
     @Override
-    public int size() { return buffer.length; }
+    public int size() {
+        return buffer.length;
+    }
 
     /**
      * remove item from array object at a specified index
+     *
      * @param index specified index
      */
     @Override
     public T remove(int index) {
-        if (index < 0 || index > currentCapacity) {  throw new ArrayIndexOutOfBoundsException();  }
+        if (index < 0 || index > currentCapacity) {
+            throw new ArrayIndexOutOfBoundsException();
+        }
 
 //       T[] holder = (T[]) new Object[buffer.length];
         T deleted = buffer[index];
@@ -101,7 +114,7 @@ public class GenericArrayList<T> implements IList<T>, Iterable<T>{
 //        return deleted;
 
         for (int i = index; i < buffer.length - index - 1; i++) {
-             buffer[i] = buffer[i+1];
+            buffer[i] = buffer[i + 1];
         }
         nextFreeLocation = nextFreeLocation - 1;
         return deleted;
@@ -109,18 +122,23 @@ public class GenericArrayList<T> implements IList<T>, Iterable<T>{
 
     /**
      * remove item from array object at a specified index
+     *
      * @param elem index to delete at
      */
     @Override
     public boolean remove(T elem) {
-     if (elem != null){
-         for (int i = 0; i < currentCapacity; i++) {
-             //find the index of elem
-             if(buffer[i] == elem){ remove(i);}
-         }
-         return true;
+        if (elem != null) {
+            for (int i = 0; i < currentCapacity; i++) {
+                //find the index of elem
+                if (buffer[i] == elem) {
+                    remove(i);
+                }
+            }
+            return true;
 
-     }else { return false; }
+        } else {
+            return false;
+        }
 
 
     }
@@ -130,7 +148,7 @@ public class GenericArrayList<T> implements IList<T>, Iterable<T>{
         //loop the buffer
         for (int i = 0; i < buffer.length; i++) {
             //check if any index has a value
-            if (!(buffer[i] == null)){
+            if (!(buffer[i] == null)) {
                 //return false if index has value,implying the buffer is not empty
                 return false;
             }
@@ -156,20 +174,63 @@ public class GenericArrayList<T> implements IList<T>, Iterable<T>{
 
     @Override
     public void rotate(int distance) {
-        //T[] holder = (T[]) new Object[buffer.length];
-       // int index = 0;
-//        for(int i = 0; i < buffer.length - distance; i++){
-//            holder[i] = buffer[distance++];
-//            index = i;
+//        T[] holder = (T[]) new Object[buffer.length];
+//        T first = buffer[distance];
+//
+//        for(int i = 0; i < distance; i++){
+//            for (int j = buffer.length-1; j > 0 ; j--) {
+//                buffer[j] = buffer[j -1];
+//            }
+//
 //        }
-       //System.arraycopy(buffer, distance, holder, 0, buffer.length - distance);
-       // System.arraycopy(buffer, 0, holder, (buffer.length - distance)/distance , distance);
-        //buffer = holder;
+//        buffer[0] = first;
+//       System.arraycopy(buffer, distance, holder, 0, buffer.length - distance);
+//        System.arraycopy(buffer, 0, holder, (buffer.length  - distance) -1, distance);
+//        buffer = holder;
+
+//        int n = buffer.length;
+//
+//        // construct an auxiliary array of size `k` and
+//        // fill it with the last `k` elements of the input array
+//        T[] aux = (T[]) new Object[distance];
+//        for (int i = 0; i < distance; i++) {
+//            aux[i] = buffer[distance + i];
+//        }
+//
+//        // shift the first `n-k` elements of the input array at the end
+//        for (int i = n - distance - 1; i >= 0; i--) {
+//            buffer[i + distance] = aux[i];
+//        }
+//
+//        // put the elements of the auxiliary array at their
+//        // correct positions in the input array
+//        for (int i = 0; i < distance; i++) {
+//            buffer[i] = aux[i];
+//        }
+//
+//
+//
+//
+        if(distance > buffer.length)
+
+            distance=distance%buffer.length;
+
+        T[] result = (T[]) new Object[buffer.length];
+        int count = 0;
+        for(int i=0; i < buffer.length - distance; i++){
+            count =  i;
+            result[i] = buffer[distance+i];
+        }
 
 
+        for(int i = 0; i < distance; i++){
+            result[ distance+i+1] = buffer[i];
+        }
 
+        System.arraycopy( result, 0, buffer, 0, buffer.length );
 
- }
+    }
+
 
     public void growArray(){
        if(nextFreeLocation >= currentCapacity){
