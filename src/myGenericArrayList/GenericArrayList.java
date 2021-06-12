@@ -99,13 +99,11 @@ public class GenericArrayList<T> implements IList<T>, Iterable<T>{
 //        System.arraycopy(buffer, index, holder,index+index-1, buffer.length-index-1);
 //        buffer = holder;
 //        return deleted;
-        if(index == 0){
 
-        }
         for (int i = index; i < buffer.length - index - 1; i++) {
-
              buffer[i] = buffer[i+1];
         }
+        nextFreeLocation = nextFreeLocation - 1;
         return deleted;
     }
 
@@ -143,8 +141,8 @@ public class GenericArrayList<T> implements IList<T>, Iterable<T>{
 
     @Override
     public boolean contains(T element) {
-        for (int i = 0; i < buffer.length; i++) {
-            if(buffer[i] == element){
+        for (T t : buffer) {
+            if (t == element) {
                 return true;
             }
         }
@@ -158,17 +156,16 @@ public class GenericArrayList<T> implements IList<T>, Iterable<T>{
 
     @Override
     public void rotate(int distance) {
-        T[] holder = (T[]) new Object[buffer.length];
-        int index = 0;
+        //T[] holder = (T[]) new Object[buffer.length];
+       // int index = 0;
 //        for(int i = 0; i < buffer.length - distance; i++){
 //            holder[i] = buffer[distance++];
 //            index = i;
 //        }
+       //System.arraycopy(buffer, distance, holder, 0, buffer.length - distance);
+       // System.arraycopy(buffer, 0, holder, (buffer.length - distance)/distance , distance);
+        //buffer = holder;
 
-       System.arraycopy(buffer, distance, holder, 0, buffer.length - distance);
-        System.arraycopy(buffer, 0, holder, (buffer.length - distance)/distance , distance);
-
-        buffer = holder;
 
 
 
