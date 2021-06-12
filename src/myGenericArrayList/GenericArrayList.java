@@ -86,18 +86,27 @@ public class GenericArrayList<T> implements IList<T>, Iterable<T>{
     public T remove(int index) {
         if (index < 0 || index > currentCapacity) {  throw new ArrayIndexOutOfBoundsException();  }
 
-       T[] holder = (T[]) new Object[buffer.length];
+//       T[] holder = (T[]) new Object[buffer.length];
         T deleted = buffer[index];
-        for (int i = 0; i < buffer.length; i++) {
-            if (i != index ) { holder[i] = buffer[i]; }
-            else{ holder[i] = buffer[index+1];  i++; }
-           }
-        buffer = holder;
-        return deleted;
+//        for (int i = 0; i < buffer.length; i++) {
+//            if (i != index ) { holder[i] = buffer[i]; }
+//            else{ holder[i] = buffer[index+1];  i++; }
+//           }
+//        buffer = holder;
+//
+//        return deleted;
 //        System.arraycopy(buffer, 0, holder,0, index-1);
 //        System.arraycopy(buffer, index, holder,index+index-1, buffer.length-index-1);
 //        buffer = holder;
 //        return deleted;
+        if(index == 0){
+
+        }
+        for (int i = index; i < buffer.length - index - 1; i++) {
+
+             buffer[i] = buffer[i+1];
+        }
+        return deleted;
     }
 
     /**

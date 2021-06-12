@@ -73,8 +73,8 @@ public class GenericArrayTester implements Iterable{
         System.out.println("contain :" + names.contains("jackson"));
 
         System.out.println();
-        System.out.println("remove at index 2.....");
-        System.out.println("removed item : " + names.remove( 2));
+        System.out.println("remove at index 3.....");
+        System.out.println("removed item : " + names.remove( 3));
         System.out.println("item removed.....");
 
         for(GenericArrayListIterator<String> iterator = (GenericArrayListIterator<String>) names.iterator(); iterator.hasNext(); ){
