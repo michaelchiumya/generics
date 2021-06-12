@@ -1,23 +1,31 @@
 package MyGenericLinkedList;
 
 public class Node<T> {
-    private Node next;
-    private Node prev;
+
     private T data;
+    //If you do not add the private modifier here (use the default), then you can directly access the member variables in the JLinkList class without writing the get set method
+    private Node next;
 
-    public Node(T data){ data = data; }
-
-    public Node() {}
-
-    public void setNext(Node elem) { next = elem; }
-
-    public void setPrev(Node elem) { prev = elem; }
+    public Node(T obj) {
+        data = obj;
+        next = null;
+    }
+    public Node() {
+        data = null;
+        next = null;
+    }
 
     public Node getNext() {
         return next;
     }
-
-    public T getData(){
+    public T getData() {
         return data;
     }
+    public void setData(T data) {
+        this.data = data;
+    }
+    public void setNext(Node next) {
+        this.next = next;
+    }
+
 }

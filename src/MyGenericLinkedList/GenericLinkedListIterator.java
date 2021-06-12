@@ -7,10 +7,9 @@ public class GenericLinkedListIterator<T>  implements Iterator<T> {
 
     private Node current;
 
-    public GenericLinkedListIterator(Node head) { current = head;}
-
-
-
+    public GenericLinkedListIterator(Node first) {
+        current = first;
+    }
 
     @Override
     public boolean hasNext() {
@@ -19,9 +18,8 @@ public class GenericLinkedListIterator<T>  implements Iterator<T> {
 
     @Override
     public T next() {
-        Node temp = current;
+        Node tempo = current;
         current = current.getNext();
-        return (T) temp;
-
+        return (T) tempo;
     }
 }

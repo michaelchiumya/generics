@@ -5,48 +5,22 @@ import MyInterfaces.IList;
 
 public class GenericLinkedList<T> implements IList<T>, Iterable<T> {
 
-     Node head;
-     Node tail;
-    public GenericLinkedList(){
-        head = tail = null;
+    private Node head;
+    private Node current;
+    int size = 0;
+
+
+    public GenericLinkedList() {
+        head = current = new Node(null);
+
     }
-
-    class Node<T> {
-        private Node next;
-        private Node prev;
-        private T data;
-
-        public Node(T data){ data = data; }
-
-        public Node() {}
-
-        public void setNext(Node elem) { next = elem; }
-
-        public void setPrev(Node elem) { prev = elem; }
-
-        public Node getNext() {
-            return next;
-        }
-
-        public T getData(){
-            return data;
-        }
-    }
-
 
     @Override
     public void add(T elem) {
-        Node temp = new Node(elem);
-        temp.setNext(null);
-
-        if (head == null){
-            temp.setPrev(null);
-            head = tail = temp;
-        }else {
-            temp.setPrev(null);
-            tail.setNext(temp);
-            tail = temp ;
-        }
+        Node temp=new Node(elem);
+        this.index(size-1);
+        current.setNext(temp);
+        this.size++;
 
     }
 
@@ -57,36 +31,30 @@ public class GenericLinkedList<T> implements IList<T>, Iterable<T> {
 
     @Override
     public T set(int index, T element) {
-        Node newNode = new Node(element);
-        Node node = head;
-
-        for (int i = 0; i < index - 1; i++) {
-            node = node.getNext();
-        }
-        newNode.setNext(node.getNext());
-        node.setNext(newNode);
-        return element;
+        index(index);
+        current.setData(element);
+        return (T) current.getData();
     }
 
     @Override
     public T get(int index) {
-        return null;
+        this.index(index);
+        return (T) current.getData();
     }
 
     @Override
     public int size() {
-        return 0;
+        return this.size;
     }
 
     @Override
-    public T remove(int index) {
-       Node node = head;
+    public T remove(int i) {
+        if(i > size-1) return (T) new IndexOutOfBoundsException("index out of bounds");
+        index(i-1);
+        current.setNext(current.getNext().getNext());
+        size--;
 
-        for (int i = 0; i < index - 1 ; i++) {
-            node.getNext();
-        }
-
-         return get(index);
+        return null;
     }
 
     @Override
@@ -96,7 +64,7 @@ public class GenericLinkedList<T> implements IList<T>, Iterable<T> {
 
     @Override
     public boolean isEmpty() {
-        return head == null;
+        return size == 0;
     }
 
     @Override
@@ -106,21 +74,22 @@ public class GenericLinkedList<T> implements IList<T>, Iterable<T> {
 
     @Override
     public Iterator<T> iterator() {
-       return null;
+        return null;
     }
 
     @Override
-    public void rotate(int distance) { }
-
-    public void printList() {
-        if (head == null){
-            Node current = head;
-              while (current.getNext() != null){
-                  System.out.println(current.getData());
-                  current = current.getNext();
-              }
-            System.out.println(current.getData());
-        }
+    public void rotate(int distance) {
 
     }
+
+
+    public void index(int i) {//i starts from 0
+        int j=0;
+        current=head;
+        while(j<=i && current!=null) {//If i starts counting from 1, judge j<i
+            current=current.getNext();
+            j++;
+        }
+    }
+
 }
