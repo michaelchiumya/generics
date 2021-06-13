@@ -14,13 +14,13 @@ public class GenericQueue<T> extends GenericArrayList implements IQueue, IStack 
      * @param head generic object for first element
      * @param queueData array object to start with
      */
-    private T head, tail;
+    private T head;
     private T[] queueData;
 
     public GenericQueue() {
         super();
         head = (T) get(0);
-        queueData = (T[]) buffer;
+        queueData = (T[]) super.buffer;
     }
 
     /**
@@ -29,7 +29,7 @@ public class GenericQueue<T> extends GenericArrayList implements IQueue, IStack 
      */
     @Override
     public void enque(Object element) {
-        add(element);
+        super.add(element);
         head = (T) get(0);
     }
 
@@ -37,12 +37,12 @@ public class GenericQueue<T> extends GenericArrayList implements IQueue, IStack 
      * removes item from start array object and return item
      */
     @Override
-    public Object dequeue() throws Exception {
+    public T dequeue() throws Exception {
         //collect first element to be deleted
-        T item = (T) queueData[0];
-       //rotate out first element
-       rotate(1);
-        return item;
+      T deleted = (T) super.get(0);
+        super.remove (0);
+        head = (T) get(0);
+      return deleted;
     }
 
     /**
@@ -63,7 +63,7 @@ public class GenericQueue<T> extends GenericArrayList implements IQueue, IStack 
      * removes item from start array object and return item
      */
     @Override
-    public Object pop() throws Exception { return dequeue();}
+    public Object pop() throws Exception { head = (T) get(0); return dequeue();}
 
     /**
      * return item from start array object and return item
@@ -77,7 +77,7 @@ public class GenericQueue<T> extends GenericArrayList implements IQueue, IStack 
      * check if queue object
      */
     @Override
-    public boolean empty() { return buffer[0] == null;}
+    public boolean empty() { return super.isEmpty();}
 
     @Override
     public Iterator iterator() {

@@ -21,7 +21,6 @@ public class GenericLinkedList<T> implements IList<T>, Iterable<T> {
         this.index(size-1);
         current.setNext(temp);
         this.size++;
-
     }
 
     @Override
@@ -50,10 +49,9 @@ public class GenericLinkedList<T> implements IList<T>, Iterable<T> {
     @Override
     public T remove(int i) {
         if(i > size-1) return (T) new IndexOutOfBoundsException("index out of bounds");
-        index(i-1);
+        index(i);
         current.setNext(current.getNext().getNext());
         size--;
-
         return null;
     }
 

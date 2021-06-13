@@ -22,8 +22,8 @@ public class GenericLinkedListTester {
         }
 
         System.out.println("\n" + "linked list size : " + list1.size());
-        System.out.println("\n" + "remove index 3 :");
-        list1.remove(1);
+        //System.out.println("\n" + "remove index 3 :" +  list1.remove(1));
+
 
         for(int i=0;i<list1.size;i++) {
             System.out.println(list1.get(i));
