@@ -29,7 +29,7 @@ public class GenericQueue<T> extends GenericArrayList implements IQueue, IStack 
      */
     @Override
     public void enque(Object element) {
-        super.add(element);
+        add(element);
         head = (T) get(0);
     }
 
@@ -39,7 +39,7 @@ public class GenericQueue<T> extends GenericArrayList implements IQueue, IStack 
     @Override
     public T dequeue() throws Exception {
         //collect first element to be deleted
-      T deleted = (T) super.get(0);
+      T deleted = (T) get(0);
         super.remove (0);
         head = (T) get(0);
       return deleted;
@@ -77,7 +77,7 @@ public class GenericQueue<T> extends GenericArrayList implements IQueue, IStack 
      * check if queue object
      */
     @Override
-    public boolean empty() { return super.isEmpty();}
+    public boolean empty() { return isEmpty();}
 
     @Override
     public Iterator iterator() {

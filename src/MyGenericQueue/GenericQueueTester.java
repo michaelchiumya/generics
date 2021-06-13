@@ -66,6 +66,8 @@ public class GenericQueueTester implements Iterable{
 
     @Override
     public Iterator iterator() {
+
+        //return new GenericArrayListIterator<Integer>(buffer, nextFreeLocation);
         return null;
     }
 }
