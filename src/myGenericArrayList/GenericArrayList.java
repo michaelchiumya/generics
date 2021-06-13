@@ -64,6 +64,7 @@ public class GenericArrayList<T> implements IList<T>, Iterable<T> {
             //throw exception if index is out of range
             throw new IndexOutOfBoundsException();
         }
+
         //return the set item
         return buffer[index] = element;
     }
@@ -98,6 +99,7 @@ public class GenericArrayList<T> implements IList<T>, Iterable<T> {
     public T remove(int index) {
         if (index < 0 || index > currentCapacity) {
             throw new ArrayIndexOutOfBoundsException();
+
         }
         //get the deleted item
         T deleted = buffer[index];
@@ -107,7 +109,7 @@ public class GenericArrayList<T> implements IList<T>, Iterable<T> {
             buffer[i] = buffer[i + 1];
         }
         //set next free loc by minus 1
-        nextFreeLocation = nextFreeLocation - 1;
+        nextFreeLocation--;
         //return the deleted element
         return deleted;
     }
@@ -128,6 +130,7 @@ public class GenericArrayList<T> implements IList<T>, Iterable<T> {
                  return true;
             }
         }
+        nextFreeLocation--;
        return false;
     }
 
@@ -223,7 +226,7 @@ public class GenericArrayList<T> implements IList<T>, Iterable<T> {
 
     public void growArray(){
        if(nextFreeLocation >= currentCapacity){
-            T[] tempArr = (T[]) new Object[currentCapacity *= 3];
+            T[] tempArr = (T[]) new Object[currentCapacity *= 2];
 
             for(int i = 0; i < buffer.length; i++){
                 tempArr[i] = buffer[i];

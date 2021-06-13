@@ -27,9 +27,23 @@ public class GenericStackTester {
         System.out.println("\n" + "PEEK :" + myQ.peek());
         System.out.println( "First :" + myQ.first());
         System.out.println( "POP :" + myQ.pop());
+        for(GenericArrayListIterator<String> iterator = (GenericArrayListIterator<String>) myQ.iterator(); iterator.hasNext(); ){
+            String currElement = iterator.next();
+            System.out.print(currElement + " ");
+        }
+        System.out.println();
 
         System.out.println("\n" + "enqueue spin:" );
         myQ.enque("spin")  ;
+
+        for(GenericArrayListIterator<String> iterator = (GenericArrayListIterator<String>) myQ.iterator(); iterator.hasNext(); ){
+            String currElement = iterator.next();
+            System.out.print(currElement + " ");
+        }
+        System.out.println();
+
+        System.out.println("\n" + "dequeue:" );
+        myQ.dequeue()  ;
 
         for(GenericArrayListIterator<String> iterator = (GenericArrayListIterator<String>) myQ.iterator(); iterator.hasNext(); ){
             String currElement = iterator.next();
@@ -43,6 +57,6 @@ public class GenericStackTester {
 //            String currElement = iterator.next();
 //            System.out.print(currElement + " ");
 //        }
-      System.out.println("\n"+"here"); myQ.rev();
+
     }
 }
