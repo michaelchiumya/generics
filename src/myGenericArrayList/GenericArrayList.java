@@ -32,10 +32,7 @@ public class GenericArrayList<T> implements IList<T>, Iterable<T> {
     @Override
     public void add(T elem) {
         //check if array has space
-        if(nextFreeLocation > currentCapacity){
-            //grow array if no space in array
             growArray();
-        }
         //add element by setting element to index to next free loc
         buffer[nextFreeLocation] = elem;
         //make next free location free by moving one index up
@@ -53,7 +50,6 @@ public class GenericArrayList<T> implements IList<T>, Iterable<T> {
         growArray();
         buffer[index] = element;
         nextFreeLocation++;
-
     }
 
     /**

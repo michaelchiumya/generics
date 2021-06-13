@@ -26,8 +26,14 @@ public class GenericStack<T> extends GenericArrayList implements IQueue, IStack 
      */
     @Override
     public void push(Object element) {
-      add(element);
-      head = (T) get(0);
+     if (isEmpty()){
+         add(element);
+     }else{
+         T holder = (T) buffer[0];
+
+         add(element);
+     }
+      head = (T) element;
     }
 
     /**
@@ -38,7 +44,9 @@ public class GenericStack<T> extends GenericArrayList implements IQueue, IStack 
      */
     @Override
     public Object pop() {
-       return null;
+        length--;
+       return remove(0);
+
     }
 
     /**
@@ -46,16 +54,17 @@ public class GenericStack<T> extends GenericArrayList implements IQueue, IStack 
      */
     @Override
     public Object peek() {
-       return stackData[currentCapacity-1];
+       return buffer[0];
     }
 
     @Override
-    public void enque(Object element) { super.add(element); }
+    public void enque(Object element) { length++; super.add(0,element); }
 
     @Override
     public Object dequeue() {
         T item = (T) buffer[0];
         super.remove(item);
+        length--;
         return item;
     }
 
@@ -71,4 +80,16 @@ public class GenericStack<T> extends GenericArrayList implements IQueue, IStack 
     public Iterator iterator() {
         return new GenericArrayListIterator(stackData, nextFreeLocation);
     }
+
+    public void rev(){
+        T[] holder = (T[]) new Object[currentCapacity];
+
+        for (int i = buffer.length-1; i >= 0;  i--) {
+            if(buffer[i] != null)
+                System.out.println(buffer[i]);
+        }
+
+    }
+
+
 }

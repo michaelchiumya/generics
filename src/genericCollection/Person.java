@@ -1,9 +1,11 @@
 package genericCollection;
 
 public class Person implements Comparable<Person> {
+
         private String firstname;
         private String surname;
         private int age;
+
         public Person(int age, String surname, String firstname) {
             this.age = age;
             this.surname = surname;
@@ -27,6 +29,7 @@ public class Person implements Comparable<Person> {
         public int compareTo(Person o) {
             return Integer.compare(age, o.age);
         }
+
         @Override
         public String toString() {
             return "Person{" +

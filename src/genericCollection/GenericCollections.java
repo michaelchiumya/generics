@@ -8,15 +8,15 @@ public class GenericCollections {
          * Sort based on natural ordering (as defined by class's compareTo method)
          * @param listToSort
          */
-        public static <T extends Comparable<T>> void sort(IList<T> listToSort)
-        {
+        public static <T extends Comparable<T>> void sort(IList<T> listToSort){
+
             for (int i = 0; i < listToSort.size(); i++) //number of passes
             {
                 //keeps track of positions per pass
                 for (int j = 0; j < (listToSort.size() - 1 - i); j++)
                 {
                     //if left value is greater than right value
-                    if (listToSort.get(j).compareTo(listToSort.get(j+1)) > 0)
+                    if (listToSort.get(j+1).compareTo(listToSort.get(j)) > 0)
                     {
                         //swap values
                         T temp = listToSort.get(j);
@@ -25,6 +25,7 @@ public class GenericCollections {
                     }
                 }
             }
+
         }
 
     /**
@@ -38,8 +39,10 @@ public class GenericCollections {
      * NoSuchElementException - if the collection is empty.
      */
     public static <T extends Comparable<T>> T max(IList<T> list) {
-        sort(list);
-        return list.get(list.size()-1);
+        T max = null;
+         sort(list);
+         max = list.get(0);
+         return max;
     }
 
     /**
