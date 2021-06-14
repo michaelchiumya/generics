@@ -1,7 +1,5 @@
 package MyGenericLinkedList;
 
-import myGenericArrayList.GenericArrayListIterator;
-
 public class GenericLinkedListTester {
 
     public static void main(String[] args){
