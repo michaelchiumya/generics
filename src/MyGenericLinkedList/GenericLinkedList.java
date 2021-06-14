@@ -71,18 +71,19 @@ public class GenericLinkedList<T> implements IList<T>, Iterable<T> {
 
     @Override
     public T remove(int index) {
+        Node deleted = null;
         if(index == 0) {
             head = head.getNext();
         }else{
+
             Node currentNode = head;
             for(int i = 0; i < index - 1; i++) {
                 currentNode = currentNode.getNext();
+                deleted = currentNode.getNext();
             }
             currentNode.setNext( currentNode.getNext().getNext());
         }
-
-
-        return null;
+        return (T) deleted.getData();
     }
 
     @Override
