@@ -26,14 +26,32 @@ public class GenericLinkedList<T> implements IList<T>, Iterable<T> {
 
     @Override
     public void add(int index, T element) {
+        if(index == 0){
+            add(element); //We already have a function to do this.
+        }else{
+            Node newNode = new Node(element);
+            Node currentNode = head;
+            for(int i = 0; i < index - 1; i++) {
+                currentNode = currentNode.getNext();
+            }
+            newNode.setNext(currentNode.getNext());
+            currentNode.setNext(newNode);
+        }
 
     }
 
     @Override
     public T set(int index, T element) {
+        Node current = head;
+        int counter = 0;
+        while (current != null && index > counter) {
+            current = current.getNext();
+            counter++;
+        }
+        current.setNext(current.getNext());
+        current = current.getNext();
         return null;
     }
-
     @Override
     public T get(int index) {
         Node current = head;
@@ -61,6 +79,8 @@ public class GenericLinkedList<T> implements IList<T>, Iterable<T> {
 //        }
 
         //return (T) current.getData();
+
+
 
         return null;
     }
@@ -94,14 +114,5 @@ public class GenericLinkedList<T> implements IList<T>, Iterable<T> {
     public void rotate(int distance) {
 
     }
-    public void printList()
-    {
-        //us this to "walk" or traverse the list
-        Node current = head;
-        while(current != null){
-            System.out.print(current.getData() + ", ");
 
-            current = current.getNext();
-        }
-    }
 }
