@@ -32,11 +32,18 @@ public class GenericLinkedListTester {
         //System.out.println("\n" + "remove index 3 :" +  list1.remove(1));
 
         System.out.println("set index 1 to 12" + "\n");
-        list1.add(0, 12);
+        list1.add(1, 12);
         GenericLinkedListIterator<Integer> iterator2 = (GenericLinkedListIterator<Integer>) list1.iterator();
         while(iterator2.hasNext()){
 
             System.out.print("list : " + iterator2.next() + " " +"\n");
+        }
+
+        System.out.println("remove index 3 :" + "\n");
+        list1.remove(3);
+        GenericLinkedListIterator<Integer> iterator3 = (GenericLinkedListIterator<Integer>) list1.iterator();
+        while(iterator3.hasNext()){
+            System.out.print("list : " + iterator3.next() + " " +"\n");
         }
 
 
