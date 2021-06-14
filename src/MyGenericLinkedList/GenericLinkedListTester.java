@@ -40,12 +40,19 @@ public class GenericLinkedListTester {
         }
 
         System.out.println("remove index 2 :" + list1.remove(2) + "\n");
+       // System.out.println("remove element 30 :" + list1.remove(list1.get(2)) + "\n");
 
         GenericLinkedListIterator<Integer> iterator3 = (GenericLinkedListIterator<Integer>) list1.iterator();
         while(iterator3.hasNext()){
             System.out.print("list : " + iterator3.next() + " " +"\n");
         }
 
+        System.out.println("rotate by 3");
+        list1.rotate(3);
+        GenericLinkedListIterator<Integer> iterator4 = (GenericLinkedListIterator<Integer>) list1.iterator();
+        while(iterator4.hasNext()){
+            System.out.print("list : " + iterator4.next() + " " +"\n");
+        }
 
 
 
