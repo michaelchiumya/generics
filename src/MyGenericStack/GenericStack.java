@@ -1,23 +1,20 @@
 package MyGenericStack;
 
+import MyGenericLinkedList.GenericLinkedList;
+import MyGenericLinkedList.GenericLinkedListIterator;
+import MyGenericLinkedList.Node;
 import MyInterfaces.IQueue;
 import MyInterfaces.IStack;
-import myGenericArrayList.GenericArrayList;
-import myGenericArrayList.GenericArrayListIterator;
 import java.util.Iterator;
 
-public class GenericStack<T> extends GenericArrayList implements IQueue, IStack {
+public class GenericStack<T> extends GenericLinkedList implements IQueue, IStack {
 
-    private T[] stackData;
+
     private int length ;
-    private T head;
-
 
     public GenericStack() {
         super();
-        head =  null;
         length = 0;
-        stackData = (T[]) buffer;
     }
 
     /**
@@ -26,19 +23,7 @@ public class GenericStack<T> extends GenericArrayList implements IQueue, IStack 
      */
     @Override
     public void push(Object element) {
-        //check if buffer has items
-        if (buffer[0] == null){
-            //add first item if empty
-            add(element);
-        }else {
-            T holder = (T) buffer[0];
-            //set new element at the top
-            set( 0, element);
-            //add old elements on the bottom of stack
-            add(nextFreeLocation, holder);
-        }
-        // set first index as head
-        head = (T) buffer[0];
+        add(element);
         length++;
     }
 
@@ -60,23 +45,23 @@ public class GenericStack<T> extends GenericArrayList implements IQueue, IStack 
      */
     @Override
     public Object peek() {
-       return buffer[0];//return the first index
+       return super.head.getData();//return the first index
     }
 
     @Override
-    public void enque(Object element) { length++; push(element); //add to the top of stack
+    public void enque(Object element) {
+       add(element); //add to the top of stack
+        length++;
          }
 
     @Override
     public Object dequeue() {
-        T item = (T) buffer[0];
-        super.remove(item);
         length--;
-        return item;
+        return remove(0);//remove the first index
     }
 
     @Override
-    public Object first() { return head;}//return head
+    public Object first() { return head.getData();}//return head
 
     @Override
     public boolean empty() {
@@ -85,7 +70,7 @@ public class GenericStack<T> extends GenericArrayList implements IQueue, IStack 
 
     @Override
     public Iterator iterator() {
-        return new GenericArrayListIterator(stackData, nextFreeLocation);
+        return new GenericLinkedListIterator((Node) head);
     }
 
 }

@@ -164,63 +164,24 @@ public class GenericArrayList<T> implements IList<T>, Iterable<T> {
 
     @Override
     public void rotate(int distance) {
-//        T[] holder = (T[]) new Object[buffer.length];
-//        T first = buffer[distance];
-//
-//        for(int i = 0; i < distance; i++){
-//            for (int j = buffer.length-1; j > 0 ; j--) {
-//                buffer[j] = buffer[j -1];
-//            }
-//
-//        }
-//        buffer[0] = first;
-//       System.arraycopy(buffer, distance, holder, 0, buffer.length - distance);
-//        System.arraycopy(buffer, 0, holder, (buffer.length  - distance) -1, distance);
-//        buffer = holder;
-
-//        int n = buffer.length;
-//
-//        // construct an auxiliary array of size `k` and
-//        // fill it with the last `k` elements of the input array
-//        T[] aux = (T[]) new Object[distance];
-//        for (int i = 0; i < distance; i++) {
-//            aux[i] = buffer[distance + i];
-//        }
-//
-//        // shift the first `n-k` elements of the input array at the end
-//        for (int i = n - distance - 1; i >= 0; i--) {
-//            buffer[i + distance] = aux[i];
-//        }
-//
-//        // put the elements of the auxiliary array at their
-//        // correct positions in the input array
-//        for (int i = 0; i < distance; i++) {
-//            buffer[i] = aux[i];
-//        }
-//
-//
-//
-//
-        if(distance > buffer.length)
-
+        //check if distance is > buffer
+        if(distance > buffer.length){
+            //get the difference between distance and buffer length
             distance=distance%buffer.length;
-
+        }
+         //create a holder object
         T[] result = (T[]) new Object[buffer.length];
+        //set a counter
         int count = 0;
+        //
         for(int i=0; i < buffer.length - distance; i++){
-
-            result[i] = buffer[distance+i];
+            result[i] = buffer[distance+i];//copy buffer to holder object
         }
-
-
         for(int i = 1; i < distance + distance  ; i++){
-
-            result[distance+i] = buffer[count];
-            count++;
+            result[distance+i] = buffer[count];//copy from 2nd index to buffer
+            count++;//increment counter
         }
-
-        System.arraycopy( result, 0, buffer, 0, buffer.length );
-
+        System.arraycopy( result, 0, buffer, 0, buffer.length );//copy all from result to buffer
     }
 
 

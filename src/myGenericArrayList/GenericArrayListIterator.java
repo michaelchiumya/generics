@@ -9,8 +9,8 @@ public class GenericArrayListIterator<T> extends GenericArrayList<T> implements 
     private T[] newBuffer;
 
     public GenericArrayListIterator(T[] buffer, int nextFreeloc) {
-        nextFreeLocation = nextFreeloc;
-        newBuffer = buffer;
+        nextFreeLocation = nextFreeloc; //assign next free location index
+        newBuffer = buffer; //set buffer for iteration
     }
 
     @Override
@@ -23,7 +23,7 @@ public class GenericArrayListIterator<T> extends GenericArrayList<T> implements 
         if(cursor == nextFreeLocation){
             throw new NoSuchElementException();
         }
-   //used for loop in enhanced for loop, cursor var must increment to call the next index
+
         return newBuffer[cursor++];
     }
     @Override

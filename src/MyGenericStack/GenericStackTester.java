@@ -1,7 +1,7 @@
 package MyGenericStack;
 
 
-import myGenericArrayList.GenericArrayListIterator;
+import MyGenericLinkedList.GenericLinkedListIterator;
 
 public class GenericStackTester {
 
@@ -17,46 +17,31 @@ public class GenericStackTester {
         myQ.push("sit");
         //System.out.println("\n" + "length :" + myQ.);
 
-        /* iterate using enhanced for loop and custom iterator*/
-        for(GenericArrayListIterator<String> iterator = (GenericArrayListIterator<String>) myQ.iterator(); iterator.hasNext(); ){
-            String currElement = iterator.next();
-            System.out.print(currElement + " ");
+        GenericLinkedListIterator<String> iterator2 = (GenericLinkedListIterator<String>) myQ.iterator();
+        while(iterator2.hasNext()){
+            System.out.print("list : " + iterator2.next() + " " +"\n");
         }
+
         System.out.println();
 
         System.out.println("\n" + "PEEK :" + myQ.peek());
         System.out.println( "First :" + myQ.first());
-        System.out.println( "POP :" + myQ.pop());
-        for(GenericArrayListIterator<String> iterator = (GenericArrayListIterator<String>) myQ.iterator(); iterator.hasNext(); ){
-            String currElement = iterator.next();
-            System.out.print(currElement + " ");
+        //System.out.println( "POP :" + myQ.pop());
+        GenericLinkedListIterator<String> iterator3 = (GenericLinkedListIterator<String>) myQ.iterator();
+        while(iterator3.hasNext()){
+            System.out.print("list : " + iterator3.next() + " " +"\n");
         }
         System.out.println();
 
         System.out.println("\n" + "enqueue spin:" );
-        myQ.enque("spin")  ;
+        myQ.enque("spin") ;
 
-        for(GenericArrayListIterator<String> iterator = (GenericArrayListIterator<String>) myQ.iterator(); iterator.hasNext(); ){
-            String currElement = iterator.next();
-            System.out.print(currElement + " ");
+        GenericLinkedListIterator<String> iterator4 = (GenericLinkedListIterator<String>) myQ.iterator();
+        while(iterator4.hasNext()){
+            System.out.print("list : " + iterator4.next() + " " +"\n");
         }
         System.out.println();
 
-        System.out.println("\n" + "dequeue:" );
-        myQ.dequeue()  ;
-
-        for(GenericArrayListIterator<String> iterator = (GenericArrayListIterator<String>) myQ.iterator(); iterator.hasNext(); ){
-            String currElement = iterator.next();
-            System.out.print(currElement + " ");
-        }
-
-//        System.out.println( "\n" + "dequeue:");
-//        myQ.dequeue();
-//        System.out.println( "\n" + "list:" );
-//        for(GenericArrayListIterator<String> iterator = (GenericArrayListIterator<String>) myQ.iterator(); iterator.hasNext(); ){
-//            String currElement = iterator.next();
-//            System.out.print(currElement + " ");
-//        }
-
+        System.out.println("\n" + "Empty :" + myQ.empty());
     }
 }

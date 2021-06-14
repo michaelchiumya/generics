@@ -5,7 +5,7 @@ import MyInterfaces.IList;
 
 public class GenericLinkedList<T> implements IList<T>, Iterable<T> {
 
-    private Node head;
+    public Node head;
     private Node current;
     int size = 0;
 

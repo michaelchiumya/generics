@@ -4,7 +4,7 @@ import myGenericArrayList.GenericArrayListIterator;
 
 import java.util.Iterator;
 
-public class GenericQueueTester implements Iterable{
+public class GenericQueueTester {
 
     public static void main (String[] args) throws Exception {
 
@@ -60,14 +60,7 @@ public class GenericQueueTester implements Iterable{
         System.out.println("\n" + "Empty : " + colleges.empty());
         System.out.println("Get first : " + colleges.first());
 
-
-
     }
 
-    @Override
-    public Iterator iterator() {
 
-        //return new GenericArrayListIterator<Integer>(buffer, nextFreeLocation);
-        return null;
-    }
 }
