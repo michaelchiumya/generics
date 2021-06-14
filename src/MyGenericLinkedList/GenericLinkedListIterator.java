@@ -6,6 +6,7 @@ import java.util.Iterator;
 public class GenericLinkedListIterator<T>  implements Iterator<T> {
 
     private Node current;
+    private int counter = 0;
 
     public GenericLinkedListIterator(Node first) {
         current = first;
@@ -20,6 +21,6 @@ public class GenericLinkedListIterator<T>  implements Iterator<T> {
     public T next() {
         Node tempo = current;
         current = current.getNext();
-        return (T) tempo;
+        return (T) tempo.getData();
     }
 }

@@ -87,7 +87,7 @@ public class GenericLinkedList<T> implements IList<T>, Iterable<T> {
 
     @Override
     public Iterator<T> iterator() {
-        return null;
+        return new GenericLinkedListIterator<T>(head);
     }
 
     @Override

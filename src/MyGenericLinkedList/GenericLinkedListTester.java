@@ -35,6 +35,12 @@ public class GenericLinkedListTester {
         System.out.println("remove index 1" + "\n");
         list1.remove(2);
 
+        GenericLinkedListIterator<Integer> iterator = (GenericLinkedListIterator<Integer>) list1.iterator();
+
+        while(iterator.hasNext()){
+            System.out.print(iterator.next() + " ");
+        }
+
 
 
     }
