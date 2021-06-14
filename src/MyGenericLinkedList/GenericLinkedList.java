@@ -12,15 +12,16 @@ public class GenericLinkedList<T> implements IList<T>, Iterable<T> {
 
     public GenericLinkedList() {
         head = current = new Node(null);
-
     }
+
 
     @Override
     public void add(T elem) {
-        Node temp=new Node(elem);
-        this.index(size-1);
-        current.setNext(temp);
-        this.size++;
+        Node newNode = new Node();
+        newNode.setData(elem);
+        newNode.setNext(head);
+        head = newNode;
+        size++;
     }
 
     @Override
@@ -30,28 +31,37 @@ public class GenericLinkedList<T> implements IList<T>, Iterable<T> {
 
     @Override
     public T set(int index, T element) {
-        index(index);
-        current.setData(element);
-        return (T) current.getData();
+        return null;
     }
 
     @Override
     public T get(int index) {
-        this.index(index);
+        Node current = head;
+        int counter = 0;
+        while(current != null && index > counter){
+            current = current.getNext();
+            counter++;
+        }
+
         return (T) current.getData();
     }
 
     @Override
     public int size() {
-        return this.size;
+        return size;
     }
 
     @Override
-    public T remove(int i) {
-        if(i > size-1) return (T) new IndexOutOfBoundsException("index out of bounds");
-        index(i);
-        current.setNext(current.getNext().getNext());
-        size--;
+    public T remove(int index) {
+//        Node current = head;
+//        int counter = 0;
+//        while(current != null && index > counter){
+//            current = current.getNext();
+//            counter++;
+//        }
+
+        //return (T) current.getData();
+
         return null;
     }
 
@@ -62,11 +72,16 @@ public class GenericLinkedList<T> implements IList<T>, Iterable<T> {
 
     @Override
     public boolean isEmpty() {
-        return size == 0;
+        return size==0;
     }
 
     @Override
     public boolean contains(T element) {
+        Node current = head;
+        while(current != null ){
+             if (current.getData() == element){ return true; }
+            current = current.getNext();
+        }
         return false;
     }
 
@@ -79,15 +94,14 @@ public class GenericLinkedList<T> implements IList<T>, Iterable<T> {
     public void rotate(int distance) {
 
     }
+    public void printList()
+    {
+        //us this to "walk" or traverse the list
+        Node current = head;
+        while(current != null){
+            System.out.print(current.getData() + ", ");
 
-
-    public void index(int i) {//i starts from 0
-        int j=0;
-        current=head;
-        while(j<=i && current!=null) {//If i starts counting from 1, judge j<i
-            current=current.getNext();
-            j++;
+            current = current.getNext();
         }
     }
-
 }

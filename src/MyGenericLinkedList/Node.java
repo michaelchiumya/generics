@@ -8,11 +8,10 @@ public class Node<T> {
 
     public Node(T obj) {
         data = obj;
-        next = null;
+
     }
     public Node() {
-        data = null;
-        next = null;
+
     }
 
     public Node getNext() {
